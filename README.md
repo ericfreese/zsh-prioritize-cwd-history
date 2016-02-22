@@ -2,6 +2,8 @@
 
 _Prioritizes history entries executed from the current working directory._
 
+<a href="https://asciinema.org/a/7o75n5k4dmmr6aywc84e20ll9" target="_blank"><img src="https://asciinema.org/a/7o75n5k4dmmr6aywc84e20ll9.png" width="500" /></a>
+
 
 ## Installation
 
