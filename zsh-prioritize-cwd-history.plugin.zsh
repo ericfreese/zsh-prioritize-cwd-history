@@ -1,0 +1,1 @@
+zsh-prioritize-cwd-history.zsh
