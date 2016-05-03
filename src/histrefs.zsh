@@ -53,7 +53,7 @@ _zsh_prioritize_cwd_history_load_cwd_history() {
 	# [ (valid_histrefs) ] || return
 
 	# Create a tmp file for use with `fc -R`
-	local template="$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.tmphistXX"
+	local template="$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.tmphistXXXX"
 	local tmp_histfile=$(mktemp "$template")
 
 	# Copy history entries executed in this directory to tmp file
