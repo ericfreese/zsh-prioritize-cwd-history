@@ -6,7 +6,11 @@
 # Prints to STDOUT the name of the histrefs file to use for current
 # working directory
 _zsh_prioritize_cwd_history_histrefs_for_cwd() {
-	local md5=$(echo "${PWD:A}" | md5 -q)
+	if ! type md5 > /dev/null;then
+		local md5=$(echo "${PWD:A}" | md5sum | cut -d' ' -f1)
+	else
+		local md5=$(echo "${PWD:A}" | md5 -q)
+	fi
 
 	echo "$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.histrefs-$md5"
 }
