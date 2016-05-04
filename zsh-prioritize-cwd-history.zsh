@@ -41,10 +41,7 @@ setopt INC_APPEND_HISTORY
 # Global Config Variables                                            #
 #--------------------------------------------------------------------#
 
-if [ -z "$ZSH_PRIORITIZE_CWD_HISTORY_DIR" ];then
-	# only override if there's no variable
-	ZSH_PRIORITIZE_CWD_HISTORY_DIR="$HOME/.zsh_prioritize_cwd_history"
-fi
+ZSH_PRIORITIZE_CWD_HISTORY_DIR="$HOME/.zsh_prioritize_cwd_history"
 
 #--------------------------------------------------------------------#
 # Histrefs files store timestamp references to entries in HISTFILE   #
@@ -100,7 +97,7 @@ _zsh_prioritize_cwd_history_load_cwd_history() {
 	# [ (valid_histrefs) ] || return
 
 	# Create a tmp file for use with `fc -R`
-	local template="$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.tmphistXX"
+	local template="$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.tmphistXXXX"
 	local tmp_histfile=$(mktemp "$template")
 
 	# Copy history entries executed in this directory to tmp file
