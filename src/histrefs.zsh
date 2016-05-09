@@ -6,7 +6,11 @@
 # Prints to STDOUT the name of the histrefs file to use for current
 # working directory
 _zsh_prioritize_cwd_history_histrefs_for_cwd() {
-	local md5=$(echo "${PWD:A}" | md5 -q)
+	if ! type md5 > /dev/null;then
+		local md5=$(echo "${PWD:A}" | md5sum | cut -d' ' -f1)
+	else
+		local md5=$(echo "${PWD:A}" | md5 -q)
+	fi
 
 	echo "$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.histrefs-$md5"
 }
@@ -49,7 +53,7 @@ _zsh_prioritize_cwd_history_load_cwd_history() {
 	# [ (valid_histrefs) ] || return
 
 	# Create a tmp file for use with `fc -R`
-	local template="$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.tmphistXX"
+	local template="$ZSH_PRIORITIZE_CWD_HISTORY_DIR/.tmphistXXXX"
 	local tmp_histfile=$(mktemp "$template")
 
 	# Copy history entries executed in this directory to tmp file
