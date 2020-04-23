@@ -34,17 +34,14 @@ _zsh_prioritize_cwd_history_cwd_hist_entries() {
 	# Build a grep pattern that will pick out from HISTFILE all
 	# history entries (that were saved with EXTENDED_HISTORY)
 	# referenced by the histrefs file
-	local pattern="$(
 		# Get last 1000 histrefs
-		tail -1000 "$histrefs" |
-
 		# Prepend "^: " to timestamps
-		sed -e 's/^/^: /' |
-
 		# Join lines with a pipe delimiter
-		paste -s -d '|' - |
-
 		# Format into grep `OR` with backslash pipe
+	local pattern="$(
+		tail -1000 "$histrefs" |
+		sed -e 's/^/^: /' |
+		paste -s -d '|' - |
 		sed -e 's/[|]/\\|/g'
 	)"
 
